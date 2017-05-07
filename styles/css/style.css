@@ -1,5 +1,43 @@
+@-webkit-keyframes pulsate {
+    0% {transform: scale(0.7, 0.7); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {transform: scale(1, 1); opacity: 1.0;}
+}
+
+@-moz-keyframes pulsate {
+    0% {transform: scale(0.7, 0.7); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {transform: scale(1, 1); opacity: 1.0;}
+}
+
+@keyframes pulsate {
+    0% {transform: scale(0.7, 0.7); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {transform: scale(1, 1); opacity: 1.0;}
+}
+
 html, body {
     background: #27506C;
+}
+
+label:focus
+input:focus,
+button:active:focus,
+select:focus,
+textarea:focus,
+button:active:focus,
+button:focus,
+.btn.check {
+    outline: none;
+}
+
+.pulse {
+    animation: pulsate 0.3s ease-in-out;
+    animation-iteration-count: 1;
+    -webkit-animation: pulsate 0.3s ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation: pulsate 0.3s ease-in-out;
+    -moz-animation-iteration-count: 1;
 }
 
 .container {
@@ -11,6 +49,44 @@ html, body {
 .greyout {
     filter: grayscale(100%);
     cursor: not-allowed;
+}
+
+.loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.7);
+    background-image: url('../images/ring-alt.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    display: none;
+}
+
+.jumbotron {
+    position: relative;
+}
+
+.button-wrapper .btn {
+    margin-bottom: 10px;
+}
+
+.step1 {
+    display: none;
+}
+
+.step2 {
+    display: none;
+}
+
+.step3 {
+    display: none;
+}
+
+.step4 {
+    display: none;
 }
 
 form[name="regForm"] .input-group {
@@ -30,6 +106,7 @@ form[name="regForm"] .terms {
     text-decoration: underline;
     font-size: 1.5em ;
     display: inline-block;
+    vertical-align: text-top;
 }
 
 form[name="regForm"] .terms.focus {
@@ -51,6 +128,10 @@ form[name="regForm"] .btn-group label{
 
 form[name="regForm"] label.btn a {
   font-size: 1.5em ;
+}
+
+form[name="regForm"] .btn.active.focus {
+  outline: none;
 }
 
 form[name="regForm"] label input[type="radio"] ~ i.fa.fa-circle-o{
@@ -126,4 +207,21 @@ form[name="regForm"] div[data-toggle="buttons"] label {
 form[name="regForm"] div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+.bonus {
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+form[name="detailedReg"] .form-group {
+    margin: 20px 0;
+}
+
+form[name="detailedReg"] {
+    text-align: left;
+}
+
+form[name="detailedReg"] p {
+    text-align: center;
 }

@@ -1,3 +1,5 @@
+var setStep;
+
 var errorHandler = function(input, status, problem = '') {
     var $input = input,
         $parent = $input.parent(),
@@ -39,43 +41,76 @@ var passChecker = function() {
 
 };
 
-var validateInputs = function() {
-    var inputs = ['#first_name', '#user_mail', '#user_name', '#user_pass'],
-        passed = false;
+var checkAll = function() {
+    var mail = true,
+        filled = true,
+        name = true,
+        pass = true;
 
-    $.each(inputs, function(i, val) {
-        var $current = $(val);
+    $('.inputs input').each(function(){
 
-        if($current.val() == '') {
-            errorHandler($current, false, 'Please fill in this information.');
-            return;
-        }
-        if(val === '#user_mail' && !$current.val().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-            errorHandler($current, false, 'Please enter a valid email.');
-            return;
-        }
-        if(val === '#user_name' && $current.val().length < 4) {
-            errorHandler($current, false, 'Username must be at least 4 characters long.');
-            return;
-        }
-        if(val === '#user_pass') {
-            if (!passChecker()) {
-                return;
-            }
-        }
-        else {
-            errorHandler($current, true);
-            return passed = true;
-        }
+    if($(this).val() === '') {
+        errorHandler($(this), false, 'Please fill in this information.');
+        filled = false;
+    }else if(this.id == 'user_mail' && !$(this).val().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+        errorHandler($(this), false, 'Please enter a valid email.');
+        mail = false;
+    }else if(this.id == 'user_name' && $(this).val().length < 4) {
+        errorHandler($(this), false, 'Username must be at least 4 characters long.');
+        name = false;
+    }else if(this.id == 'user_pass' && !passChecker()) {
+        pass = false;
+    }else {
+        errorHandler($(this), true);
+    }
+
     });
 
-};
+    if(mail && filled && name && pass) {
+        return true;
+    }else {
+        return false;
+    }
+}
 
-
-
-var submitForm = function() {
+var handleSteps = function() {
     var $submitBtn = $('#signup_btn'),
-        $termsBtn = $('.btn.check');
+        $termsBtn = $('.btn.check'),
+        $cont = $('#continue'),
+        $done = $('#done'),
+        $loader = $('.loader'),
+        $step1 = $('.step1'),
+        $step2 = $('.step2'),
+        $step3 = $('.step3'),
+        $step4 = $('.step4');
+
+        switch (parseInt(get())) {
+            case 2:
+                $step1.hide();
+                $step3.hide();
+                $step4.hide();
+                $step2.show();
+                break;
+            case 3:
+            console.log('dasdasd');
+                $step1.hide();
+                $step2.hide();
+                $step3.hide();
+                $step3.show();
+                break;
+            case 4:
+                $step1.hide();
+                $step2.hide();
+                $step3.hide();
+                $step4.show();
+                break;
+            default:
+                $step2.hide();
+                $step3.hide();
+                $step4.hide();
+                $step1.show();
+        }
+
 
     $termsBtn.on('click', function() {
 
@@ -90,20 +125,60 @@ var submitForm = function() {
     $submitBtn.on('click', function() {
 
         if($(this).hasClass('greyout')) {
+            $termsBtn.addClass('pulse')
+            setTimeout(function(){$termsBtn.removeClass('pulse');}, 300)
             return false;
         }
 
-        if(validateInputs()) {
+        if(checkAll()) {
             console.log('Success!')
+            $loader.fadeIn();
+            setTimeout(function() {
+                setStep = 2;
+                store();
+                console.log(get());
+                $loader.fadeOut();
+                $step1.hide();
+                $step2.fadeIn();
+            }, 3000)
+
         }else {
             console.log('Faliure!');
         }
     });
 
+    $cont.on('click', function() {
+        setStep = 3;
+        store();
+        console.log(get());
+        $step2.hide();
+        $step3.fadeIn();
+    });
+
+    $done.on('click', function() {
+
+        $loader.fadeIn();
+        setTimeout(function() {
+            setStep = 4;
+            store();
+            console.log(get());
+            $loader.fadeOut();
+            $step3.hide();
+            $step4.fadeIn();
+        }, 3000)
+
+    });
+
+}
+
+var store = function() {
+    sessionStorage.setItem('step', setStep);
+}
+
+var get = function() {
+    return sessionStorage.getItem('step');
 }
 
 $(document).ready(function() {
-
-    submitForm();
-
+    handleSteps();
 });
