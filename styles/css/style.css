@@ -1,0 +1,129 @@
+html, body {
+    background: #27506C;
+}
+
+.container {
+    max-width: 600px;
+    padding-top: 5%;
+    text-align: center;
+}
+
+.greyout {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+form[name="regForm"] .input-group {
+    margin: 20px 0;
+}
+
+form[name="regForm"] .alert {
+    display: none;
+    text-align: left;
+}
+
+form[name="regForm"] .btn-lg {
+    margin-top: 20px;
+}
+
+form[name="regForm"] .terms {
+    text-decoration: underline;
+    font-size: 1.5em ;
+    display: inline-block;
+}
+
+form[name="regForm"] .terms.focus {
+    outline:0;
+    color: #c8c8c8
+}
+
+form[name="regForm"] .terms:hover {
+    color: #7AA3CC;
+}
+
+form[name="regForm"] .btn-group {
+    display: block;
+}
+
+form[name="regForm"] .btn-group label{
+    width: 40px;
+}
+
+form[name="regForm"] label.btn a {
+  font-size: 1.5em ;
+}
+
+form[name="regForm"] label input[type="radio"] ~ i.fa.fa-circle-o{
+    color: #c8c8c8;
+    display: inline;
+}
+
+form[name="regForm"] label input[type="radio"] ~ i.fa.fa-dot-circle-o{
+    display: none;
+}
+
+form[name="regForm"] label input[type="radio"]:checked ~ i.fa.fa-circle-o{
+    display: none;
+}
+
+form[name="regForm"] label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
+    color: #7AA3CC;
+    display: inline;
+}
+
+form[name="regForm"] label:hover input[type="radio"] ~ i.fa {
+    color: #7AA3CC;
+}
+
+form[name="regForm"] label input[type="checkbox"] ~ i.fa.fa-square-o{
+    color: #c8c8c8;
+    display: inline;
+}
+
+form[name="regForm"] label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+    display: none;
+}
+
+form[name="regForm"] label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+    display: none;
+}
+
+form[name="regForm"] label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+    color: #7AA3CC;
+    display: inline;
+}
+
+form[name="regForm"] label:hover input[type="checkbox"] ~ i.fa {
+    color: #7AA3CC;
+}
+
+form[name="regForm"] div[data-toggle="buttons"] label.active{
+    color: #7AA3CC;
+}
+
+form[name="regForm"] div[data-toggle="buttons"] label {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 2em;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: none;
+    border: 0px solid #c8c8c8;
+    border-radius: 3px;
+    color: #c8c8c8;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+form[name="regForm"] div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
