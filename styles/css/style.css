@@ -89,6 +89,12 @@ button:focus,
     display: none;
 }
 
+form[name="regForm"] .terms-check {
+    display: inline-block;
+    font-size: 1em ;
+    width: 200px;
+}
+
 form[name="regForm"] .input-group {
     margin: 20px 0;
 }
@@ -104,7 +110,7 @@ form[name="regForm"] .btn-lg {
 
 form[name="regForm"] .terms {
     text-decoration: underline;
-    font-size: 1.5em ;
+
     display: inline-block;
     vertical-align: text-top;
 }
